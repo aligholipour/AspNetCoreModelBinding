@@ -1,6 +1,7 @@
 ﻿using AspNetCoreModelBinding.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace AspNetCoreModelBinding.Controllers
 {
