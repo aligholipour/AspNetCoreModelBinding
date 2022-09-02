@@ -1,6 +1,13 @@
+using AspNetCoreModelBinding.ModelBindings.PersonModelBindings;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddControllers(options =>
+{
+    options.ModelBinderProviders.Insert(0, new PersonBinderProvider());
+});
 
 var app = builder.Build();
 
