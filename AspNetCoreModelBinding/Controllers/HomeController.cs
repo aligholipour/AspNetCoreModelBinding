@@ -1,8 +1,9 @@
 ﻿using AspNetCoreModelBinding.ModelBindings.CountriesModelBindings;
+using AspNetCoreModelBinding.ModelBindings.ExchangeCurrency;
 using AspNetCoreModelBinding.Models;
+using AspNetCoreModelBinding.Models.ExchangeCurrency;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Text.Json;
 
 namespace AspNetCoreModelBinding.Controllers
 {
@@ -31,6 +32,14 @@ namespace AspNetCoreModelBinding.Controllers
         public IActionResult Countries([ModelBinder(typeof(CountryModelBinding))] string[] countries)
         {
             return Ok(countries);
+        }
+
+        //Currency pattern => {amount}-from}-{to}
+        //Example: /ExchangeCurrency/100-USD-CHF
+        [HttpGet("ExchangeCurrency/{currency}")]
+        public IActionResult ExchangeCurrency([ModelBinder(typeof(ExchangeCurrency))] CurrencyModel currency)
+        {
+            return Ok(currency);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -6,15 +6,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="ModelBindings\ExchangeCurrency\**" />
-    <Compile Remove="Models\ExchangeCurreny\**" />
-    <Content Remove="ModelBindings\ExchangeCurrency\**" />
-    <Content Remove="Models\ExchangeCurreny\**" />
-    <EmbeddedResource Remove="ModelBindings\ExchangeCurrency\**" />
-    <EmbeddedResource Remove="Models\ExchangeCurreny\**" />
-    <None Remove="ModelBindings\ExchangeCurrency\**" />
-    <None Remove="Models\ExchangeCurreny\**" />
-  </ItemGroup>
-
 </Project>
