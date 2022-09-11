@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using AspNetCoreModelBinding.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace AspNetCoreModelBinding.ModelBindings.CountriesModelBindings
 {
@@ -15,7 +16,8 @@ namespace AspNetCoreModelBinding.ModelBindings.CountriesModelBindings
             if (result)
             {
                 var countryArray = country.ToString().Split(",");
-                bindingContext.Result = ModelBindingResult.Success(countryArray);
+                var countryModel = new Country { CountryNames = countryArray };
+                bindingContext.Result = ModelBindingResult.Success(countryModel);
             }
 
             return Task.CompletedTask;

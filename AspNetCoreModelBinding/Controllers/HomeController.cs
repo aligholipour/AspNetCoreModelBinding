@@ -10,7 +10,6 @@ namespace AspNetCoreModelBinding.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -21,15 +20,18 @@ namespace AspNetCoreModelBinding.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        //Countries pattern => {iran,denmark,Switzerland}
+        //Example: /CountriesModelBinderAttribute/iran,denmark,Switzerland
+        [HttpGet("CountriesModelBinderAttribute/{countries}")]
+        public IActionResult CountriesWithModelBinderAttribute([ModelBinder(typeof(CountryModelBinding))] Country countries)
         {
-            return View();
+            return Ok(countries);
         }
 
         //Countries pattern => {iran,denmark,Switzerland}
-
-        [HttpGet("Countries/{countries}")]
-        public IActionResult Countries([ModelBinder(typeof(CountryModelBinding))] string[] countries)
+        //Example: /CountriesBinderProvider/iran,denmark,Switzerland
+        [HttpGet("CountriesBinderProvider/{countries}")]
+        public IActionResult CountriesWithBinderProvider(Country countries)
         {
             return Ok(countries);
         }
@@ -40,6 +42,11 @@ namespace AspNetCoreModelBinding.Controllers
         public IActionResult ExchangeCurrency([ModelBinder(typeof(ExchangeCurrency))] CurrencyModel currency)
         {
             return Ok(currency);
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
